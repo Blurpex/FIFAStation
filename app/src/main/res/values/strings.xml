@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FIFA Station</string>
+
+    <!-- activity_main.xml -->
+    <string name="trending_players">Trending Players</string>
+
+    <!-- toolbar.xml -->
+    <string name="page_title">FIFA Station</string>
+
+    <!-- top_app_bar.xml -->
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+
 </resources>
