@@ -9,6 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import android.os.Handler;
+import android.util.Log;
 
 @Database(entities = { Player.class }, version = 1, exportSchema = false)
 public abstract class PlayerDatabase extends RoomDatabase {
@@ -68,6 +69,8 @@ public abstract class PlayerDatabase extends RoomDatabase {
         (new Thread(() -> {
             Message msg = handler.obtainMessage();
             msg.obj = INSTANCE.playerDAO().getPlayerById(id);
+            Log.d("playerDebug", Boolean.toString(msg.obj == null));
+            Log.d("playerDebug", msg.obj.toString());
             handler.sendMessage(msg);
         })).start();
     }
