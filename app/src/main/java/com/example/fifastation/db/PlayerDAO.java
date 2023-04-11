@@ -8,9 +8,15 @@ import java.util.List;
 @Dao
 public interface PlayerDAO {
 
-    @Query("SELECT * FROM players ORDER BY overall")
+    @Query("SELECT * FROM players ORDER BY rating")
     List<Player> getAllPlayers();
 
+    @Query("SELECT * FROM players WHERE short_name LIKE '%' || :playerName || '%' OR long_name LIKE '%' || :playerName || '%'")
+    List<Player> getPlayerByName(String playerName);
+
     @Query("SELECT * FROM players WHERE id = :id")
-    Player getPlayerById(int id);
+    List<Player> getPlayerById(int id);
+
+    @Query("SELECT * FROM players ORDER BY rating DESC LIMIT 10")
+    List<Player> getTopTenRatedPlayers();
 }

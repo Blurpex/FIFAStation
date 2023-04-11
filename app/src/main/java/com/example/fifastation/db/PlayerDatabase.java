@@ -9,14 +9,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import android.os.Handler;
-import android.util.Log;
+
+import java.util.List;
 
 @Database(entities = { Player.class }, version = 1, exportSchema = false)
 public abstract class PlayerDatabase extends RoomDatabase {
 
     @FunctionalInterface
     public interface PlayerListener {
-        void onPlayerReturned(Player player);
+        void onPlayerReturned(List<Player> player);
     }
 
     // returns data access object
@@ -48,7 +49,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                listener.onPlayerReturned((Player) msg.obj);
+                listener.onPlayerReturned((List<Player>) msg.obj);
             }
         };
         (new Thread(() -> {
@@ -58,19 +59,47 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    public static void getPlayersByName(String playerName, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj =  INSTANCE.playerDAO().getPlayerByName(playerName);
+            handler.sendMessage(msg);
+        })).start();
+    }
+
     public static void getPlayerById(int id, PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                listener.onPlayerReturned((Player) msg.obj);
+                listener.onPlayerReturned((List<Player>) msg.obj);
             }
         };
         (new Thread(() -> {
             Message msg = handler.obtainMessage();
             msg.obj = INSTANCE.playerDAO().getPlayerById(id);
-            Log.d("playerDebug", Boolean.toString(msg.obj == null));
-            Log.d("playerDebug", msg.obj.toString());
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    public static void getTopTenRatedPlayers(PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getTopTenRatedPlayers();
             handler.sendMessage(msg);
         })).start();
     }
