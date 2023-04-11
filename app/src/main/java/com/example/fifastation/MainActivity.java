@@ -6,9 +6,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.fifastation.db.Player;
+import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 default: return false;
             }
         });
+
+        PlayerDatabase.getInstance(this);
+        PlayerDatabase.getPlayerById(41, player -> this.player = player);
+        Log.d("debug_player", this.player.short_name);
     }
 
 }

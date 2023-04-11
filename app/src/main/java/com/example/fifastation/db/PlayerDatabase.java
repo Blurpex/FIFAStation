@@ -25,11 +25,17 @@ public abstract class PlayerDatabase extends RoomDatabase {
     private static PlayerDatabase INSTANCE;
 
     // returns instance of database class
-    public static PlayerDatabase getDatabase(final Context context) {
+    public static PlayerDatabase getInstance(final Context context) {
         if(INSTANCE == null) {
             synchronized (PlayerDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), PlayerDatabase.class, "PlayerDatabase").build();
+                    INSTANCE = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                                    PlayerDatabase.class,
+                                    "PlayerDatabase"
+                            )
+                            .createFromAsset("fifadb.sqlite")
+                            .build();
                 }
             }
         }
@@ -47,6 +53,21 @@ public abstract class PlayerDatabase extends RoomDatabase {
         (new Thread(() -> {
             Message msg = handler.obtainMessage();
             msg.obj =  INSTANCE.playerDAO().getAllPlayers();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    public static void getPlayerById(int id, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((Player) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getPlayerById(id);
             handler.sendMessage(msg);
         })).start();
     }
