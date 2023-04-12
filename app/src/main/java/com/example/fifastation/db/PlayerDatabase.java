@@ -104,4 +104,19 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    public static void getPlayerByClub(String clubName, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getPlayerByClub(clubName);
+            handler.sendMessage(msg);
+        })).start();
+    }
+
 }
