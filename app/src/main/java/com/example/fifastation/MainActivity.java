@@ -14,8 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Player player;
-    List<Player> playersList;
+    private List<Player> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 default: return false;
             }
         });
+    }
 
+    private void setupPlayerModel() {
         PlayerDatabase.getInstance(this);
-//        PlayerDatabase.getPlayerById(20801, player -> {
-//            this.player = player;
-//            Log.d("playerDebug", player.short_name);
-//        });
-
-        PlayerDatabase.getTopTenRatedPlayers(players -> {
-            playersList = players;
-            playersList.forEach(elem -> Log.d("playerDebug", elem.long_name + " --- " + elem.club_name + " --- " + elem.rating));
-        });
+        PlayerDatabase.getTopTenRatedPlayers(players -> this.players = players);
     }
 
 }

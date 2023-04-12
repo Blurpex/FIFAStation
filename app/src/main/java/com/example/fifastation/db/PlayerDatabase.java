@@ -15,18 +15,17 @@ import java.util.List;
 @Database(entities = { Player.class }, version = 1, exportSchema = false)
 public abstract class PlayerDatabase extends RoomDatabase {
 
+    // interface for listener
     @FunctionalInterface
     public interface PlayerListener {
         void onPlayerReturned(List<Player> player);
     }
 
-    // returns data access object
+    // instances for data access object and database
     public abstract PlayerDAO playerDAO();
-
-    // create an instance of database class
     private static PlayerDatabase INSTANCE;
 
-    // returns instance of database class
+    // returns instance of database class using the singleton pattern
     public static PlayerDatabase getInstance(final Context context) {
         if(INSTANCE == null) {
             synchronized (PlayerDatabase.class) {
@@ -36,7 +35,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
                                     PlayerDatabase.class,
                                     "PlayerDatabase"
                             )
-                            .createFromAsset("fifadb.sqlite")
+                            .createFromAsset("database/fifadb.sqlite")
                             .build();
                 }
             }
@@ -44,6 +43,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+    // returns all players in the database
     public static void getAllPlayers(PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -59,6 +59,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns players with similar name as the given query
     public static void getPlayersByName(String playerName, PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -74,6 +75,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns one player with the corresponding ID
     public static void getPlayerById(int id, PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -89,6 +91,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns 10 players with the highest overall rating
     public static void getTopTenRatedPlayers(PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -104,6 +107,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns players who play for a given club
     public static void getPlayerByClub(String clubName, PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
             @Override
@@ -115,6 +119,22 @@ public abstract class PlayerDatabase extends RoomDatabase {
         (new Thread(() -> {
             Message msg = handler.obtainMessage();
             msg.obj = INSTANCE.playerDAO().getPlayerByClub(clubName);
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    // returns players who play in a given position
+    public static void getPlayerByPosition(String position, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getPlayerByPosition(position);
             handler.sendMessage(msg);
         })).start();
     }

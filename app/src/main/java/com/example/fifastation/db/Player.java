@@ -13,9 +13,8 @@ public class Player {
                   String nationality, String preferred_foot, int weak_foot, int skill_moves,
                   int pace, int shooting, int passing, int dribbling, int defending, int physical,
                   int gk_diving, int gk_handling, int gk_kicking, int gk_positioning, int gk_reflexes,
-                  int gk_speed, String player_face_url, String club_logo_url, String nation_flag_url
-
-    ) {
+                  int gk_speed, String player_face_url, String club_logo_url, String nation_flag_url)
+    {
         this.id = id;
         this.short_name = short_name;
         this.long_name = long_name;
