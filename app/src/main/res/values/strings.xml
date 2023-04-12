@@ -4,6 +4,11 @@
     <!-- activity_main.xml -->
     <string name="trending_players">Trending Players</string>
 
+    <!-- player_list_item.xml -->
+    <string name="player_name">Jeremy Blum</string>
+    <string name="clubNation">PSU | USA</string>
+    <string name="rating">99</string>
+
     <!-- toolbar.xml -->
     <string name="page_title">FIFA Station</string>
 
