@@ -2,29 +2,35 @@ package com.example.fifastation;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-
-    private List<Player> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // change the itle of the toolbar title to 'Home'
+        // change the title of the toolbar title to 'Home'
         CoordinatorLayout outerToolbar = findViewById(R.id.home_toolbar);
         MaterialToolbar toolbar = outerToolbar.findViewById(R.id.topAppBar);
         toolbar.setTitle("Home");
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView recyclerView = findViewById(R.id.trending_player_list);
+        PlayerDatabase.getInstance(this);
+        PlayerDatabase.getTopTenRatedPlayers(players -> {
+            PlayerAdapter adapter = new PlayerAdapter(this, players);
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(layoutManager);
+        });
 
         // open drawer
         toolbar.setNavigationOnClickListener(view -> {
@@ -43,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 default: return false;
             }
         });
-    }
-
-    private void setupPlayerModel() {
-        PlayerDatabase.getInstance(this);
-        PlayerDatabase.getTopTenRatedPlayers(players -> this.players = players);
     }
 
 }
