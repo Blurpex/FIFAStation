@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setPositiveButton("Acknowledge", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show();
                 }
             });
 
