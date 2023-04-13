@@ -1,11 +1,15 @@
 package com.example.fifastation;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.fifastation.db.PlayerDatabase;
@@ -17,6 +21,34 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //dialog
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        boolean isFirstRun = sharedPreferences.getBoolean("IS_FIRST_RUN", true);
+
+        if(isFirstRun == true) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("You need to have Mobile data or Wifi to access all features.");
+            alertDialog.setIcon(R.drawable.ic_alert);
+
+            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            alertDialog.show();
+
+            // Update
+            editor.putBoolean("IS_FIRST_RUN", false);
+            editor.commit();
+        }
+
+
 
         // change the title of the toolbar title to 'Home'
         CoordinatorLayout outerToolbar = findViewById(R.id.home_toolbar);
@@ -49,6 +81,18 @@ public class MainActivity extends AppCompatActivity {
                 default: return false;
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Update
+        editor.putBoolean("IS_FIRST_RUN", true);
+        editor.commit();
     }
 
 }
