@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 
             alertDialog.setTitle("Alert");
-            alertDialog.setMessage("You need to have Mobile data or Wifi to access all features.");
+            alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
             alertDialog.setIcon(R.drawable.ic_alert);
 
-            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            alertDialog.setPositiveButton("Acknowledge", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                 }
