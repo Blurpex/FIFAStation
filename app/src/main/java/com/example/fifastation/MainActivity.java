@@ -3,6 +3,7 @@ package com.example.fifastation;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,51 +13,46 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MaterialToolbar toolbar;
+    private DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //dialog
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        boolean isFirstRun = sharedPreferences.getBoolean("IS_FIRST_RUN", true);
-
-        if(isFirstRun == true) {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
-            alertDialog.setIcon(R.drawable.ic_alert);
-
-            alertDialog.setPositiveButton("Acknowledge", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show();
-                }
-            });
-
-            alertDialog.show();
-
-            // Update
-            editor.putBoolean("IS_FIRST_RUN", false);
-            editor.commit();
-        }
-
-
-
-        // change the title of the toolbar title to 'Home'
-        CoordinatorLayout outerToolbar = findViewById(R.id.home_toolbar);
-        MaterialToolbar toolbar = outerToolbar.findViewById(R.id.topAppBar);
+        // top app bar
+        toolbar = findViewById(R.id.topAppBar);
         toolbar.setTitle("Home");
+        setSupportActionBar(toolbar);
 
+        // drawer
+        this.drawer = findViewById(R.id.drawer);
+        toolbar.setNavigationOnClickListener(view -> drawer.open());
+        toolbar.setOnMenuItemClickListener( menuItem -> {
+            switch(menuItem.getItemId()) {
+                case R.id.players:
+                    return true;
+                case R.id.settings:
+                    Log.d("MainActivity", "settings: "  + R.id.settings);
+                    return true;
+                default: return false;
+            }
+        });
+
+        // content for the activity
+        displayCopyrightDialog();
+        displayTrendingPlayers();
+    }
+
+    private void displayTrendingPlayers() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerView recyclerView = findViewById(R.id.trending_player_list);
         PlayerDatabase.getInstance(this);
@@ -65,24 +61,31 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(layoutManager);
         });
+    }
 
-        // open drawer
-        toolbar.setNavigationOnClickListener(view -> {
-            Log.d("MainActivity", "navigation drawer");
-        });
+    private void displayCopyrightDialog() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // handle if the user clicks on the menu items
-        toolbar.setOnMenuItemClickListener( menuItem -> {
-            switch(menuItem.getItemId()) {
-                case R.id.search:
-                    Log.d("MainActivity", "search: " + R.id.search);
-                    return true;
-                case R.id.settings:
-                    Log.d("MainActivity", "settings: "  + R.id.settings);
-                    return true;
-                default: return false;
-            }
-        });
+        boolean isFirstRun = sharedPreferences.getBoolean("IS_FIRST_RUN", true);
+
+        if(isFirstRun) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
+            alertDialog.setIcon(R.drawable.ic_alert);
+            alertDialog.setPositiveButton(
+                    "Acknowledge",
+                    (dialog, which) -> Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show()
+            );
+
+            alertDialog.show();
+
+            // Update
+            editor.putBoolean("IS_FIRST_RUN", false);
+            editor.commit();
+        }
     }
 
     @Override

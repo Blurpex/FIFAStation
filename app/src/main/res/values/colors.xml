@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- custom colors -->
+    <color name="primary">#9EE493</color>
+<!--    <colol name="secondary">#0B0014</colol>-->
 </resources>

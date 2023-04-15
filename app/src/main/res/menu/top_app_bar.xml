@@ -1,17 +1,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/app_name">
+        <menu>
+            <item
+                android:id="@+id/players"
+                android:icon="@drawable/players"
+                android:title="@string/players"
+                android:contentDescription="@string/players"
+                android:checkable="true" />
+            <item
+                android:id="@+id/favorite"
+                android:icon="@drawable/favorite"
+                android:title="@string/favorite"
+                android:contentDescription="@string/favorite"
+                android:checkable="true"/>
+        </menu>
+    </item>
 
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/search"
-        android:title="@string/search"
-        android:contentDescription="@string/search"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        android:contentDescription="@string/settings"
-        app:showAsAction="never" />
-
+        android:title="@string/system">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/settings"
+                android:title="@string/settings"
+                android:contentDescription="@string/settings"
+                android:checkable="true" />
+        </menu>
+    </item>
 </menu>
