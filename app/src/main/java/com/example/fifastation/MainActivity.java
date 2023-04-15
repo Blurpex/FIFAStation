@@ -1,27 +1,29 @@
 package com.example.fifastation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements NavigationView.OnNavigationItemSelectedListener {
 
     private MaterialToolbar toolbar;
     private DrawerLayout drawer;
+    private NavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +31,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // top app bar
-        toolbar = findViewById(R.id.topAppBar);
-        toolbar.setTitle("Home");
+        this.toolbar = findViewById(R.id.topAppBar);
+        this.toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
+
+        // navigation
+        this.navigation = findViewById(R.id.navigation);
+        this.navigation.setNavigationItemSelectedListener(this);
 
         // drawer
         this.drawer = findViewById(R.id.drawer);
-        toolbar.setNavigationOnClickListener(view -> drawer.open());
-        toolbar.setOnMenuItemClickListener( menuItem -> {
-            switch(menuItem.getItemId()) {
-                case R.id.players:
-                    return true;
-                case R.id.settings:
-                    Log.d("MainActivity", "settings: "  + R.id.settings);
-                    return true;
-                default: return false;
-            }
-        });
+        this.toolbar.setNavigationOnClickListener(view -> drawer.open());
 
         // content for the activity
         displayCopyrightDialog();
         displayTrendingPlayers();
+    }
+
+    // handles navigation item when selected
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.players) {
+            test("players: " + R.id.players);
+            Intent intent = new Intent(this, PlayerActivity.class);
+            startActivity(intent);
+        }
+        else if(itemId == R.id.favorite) {
+            test("favorite: " + R.id.favorite);
+        }
+        else if(itemId == R.id.settings) {
+            test("settings: "  + R.id.settings);
+        }
+        this.drawer.close();
+        return true;
     }
 
     private void displayTrendingPlayers() {
@@ -71,15 +86,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(isFirstRun) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-
             alertDialog.setTitle("Alert");
             alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
             alertDialog.setIcon(R.drawable.ic_alert);
-            alertDialog.setPositiveButton(
-                    "Acknowledge",
-                    (dialog, which) -> Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show()
-            );
-
+            alertDialog.setPositiveButton("Acknowledge",
+                    (dialog, which) -> Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show());
             alertDialog.show();
 
             // Update
@@ -100,4 +111,7 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    private void test(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
 }
