@@ -39,4 +39,7 @@ dependencies {
     def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.71828'
+
 }
