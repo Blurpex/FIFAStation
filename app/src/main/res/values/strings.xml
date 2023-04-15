@@ -14,8 +14,15 @@
 
     <!-- top_app_bar.xml -->
     <string name="players">Players</string>
+    <string name="clubs">Clubs</string>
     <string name="favorite">Favorites</string>
     <string name="settings">Settings</string>
     <string name="system">System</string>
+
+    <!-- activity_player.xml -->
+    <array name="initial_rating_values">
+        <item>70</item>
+        <item>90</item>
+    </array>
 
 </resources>

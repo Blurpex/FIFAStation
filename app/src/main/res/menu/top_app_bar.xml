@@ -10,6 +10,12 @@
                 android:contentDescription="@string/players"
                 android:checkable="true" />
             <item
+                android:id="@+id/clubs"
+                android:icon="@drawable/clubs"
+                android:title="@string/clubs"
+                android:contentDescription="@string/clubs"
+                android:checkable="true" />
+            <item
                 android:id="@+id/favorite"
                 android:icon="@drawable/favorite"
                 android:title="@string/favorite"
