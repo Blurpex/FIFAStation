@@ -33,11 +33,11 @@
     <com.google.android.material.slider.RangeSlider
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:stepSize="1"
         android:valueFrom="50"
         android:valueTo="100"
-        android:stepSize="1"
-        app:values="@array/initial_rating_values"
-        android:layout_marginHorizontal="10dp"/>
+        app:values="@array/initial_rating_values" />
 
     <TextView
         android:layout_width="wrap_content"
