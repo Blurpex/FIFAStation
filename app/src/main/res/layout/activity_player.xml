@@ -11,7 +11,7 @@
         android:id="@+id/search_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/player_name"
         android:textSize="16sp" />
 
     <com.google.android.material.divider.MaterialDivider
@@ -19,11 +19,6 @@
         android:layout_height="wrap_content"
         app:dividerInsetStart="15dp"
         app:dividerInsetEnd="15dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,11 +38,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="League" />
+    <Spinner
+        android:id="@+id/league_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:textAlignment="center"
+        android:spinnerMode="dropdown" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nationality" />
+    <Spinner
+        android:id="@+id/nationality_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:textAlignment="center"
+        android:spinnerMode="dropdown" />
 
     <Button
         style="@style/Widget.Material3.Button.ElevatedButton"

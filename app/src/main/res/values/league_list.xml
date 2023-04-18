@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="League">
+        <item>Premier League</item>
+        <item>Serie A</item>
+        <item>La Liga</item>
+        <item>Ligue 1</item>
+        <item>Bundesliga</item>
+    </string-array>
+</resources>
