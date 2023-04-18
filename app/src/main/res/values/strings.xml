@@ -15,6 +15,7 @@
     <string name="league">NCAA Div III</string>
 
     <!-- top_app_bar.xml -->
+    <string name="home">Home</string>
     <string name="players">Players</string>
     <string name="clubs">Clubs</string>
     <string name="favorite">Favorites</string>
