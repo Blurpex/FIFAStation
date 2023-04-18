@@ -24,7 +24,7 @@ public class HomeFragment extends Fragment {
         // get the layout
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
 
-        // content for the activity
+        // trending players
         this.context = container.getContext();
         this.recycler = view.findViewById(R.id.trending_player_list);
         displayTrendingPlayers();

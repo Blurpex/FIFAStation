@@ -1,21 +1,17 @@
 package com.example.fifastation;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
-
-    private MaterialToolbar toolbar;
-    private DrawerLayout drawer;
-    private NavigationView navigation;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,32 +19,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         // top app bar
-        this.toolbar = findViewById(R.id.topAppBar);
-        this.toolbar.setTitle("Home");
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
 
-        // navigation
-        this.navigation = findViewById(R.id.navigation);
-        this.navigation.setNavigationItemSelectedListener(this);
-
         // drawer
-        this.drawer = findViewById(R.id.drawer);
-        this.toolbar.setNavigationOnClickListener(view -> drawer.open());
-    }
+        DrawerLayout drawer = findViewById(R.id.drawer);
+        toolbar.setNavigationOnClickListener(view -> drawer.open());
 
-    // handles navigation item when drawer item is selected
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-        if(itemId == R.id.players) {
-//            Intent intent = new Intent(this, PlayerActivity.class);
-//            startActivity(intent);
-        }
-        else if(itemId == R.id.favorite) {
-        }
-        else if(itemId == R.id.settings) {
-        }
-        this.drawer.close();
-        return true;
+        // navigation
+        NavigationView navigation = findViewById(R.id.navigation);
+        NavController navController1 = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(navigation, navController1);
+        navController1.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+            toolbar.setTitle(navDestination.getLabel());
+        });
     }
 }
