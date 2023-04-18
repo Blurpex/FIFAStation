@@ -77,5 +77,4 @@ public class HomeFragment extends Fragment {
         editor.commit();
     }
     */
-
 }
