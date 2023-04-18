@@ -18,6 +18,8 @@
     <string name="favorite">Favorites</string>
     <string name="settings">Settings</string>
     <string name="system">System</string>
+    <string name="submit_button">Submit button</string>
+    <string name="submit_btn">Submit</string>
 
     <!-- activity_player.xml -->
     <array name="initial_rating_values">

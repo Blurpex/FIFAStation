@@ -41,5 +41,4 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.71828'
-
 }

@@ -1,6 +1,5 @@
 package com.example.fifastation.db;
 
-import android.content.Context;
 import android.os.Looper;
 import android.os.Message;
 
@@ -9,6 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import android.os.Handler;
+import android.view.View;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public abstract class PlayerDatabase extends RoomDatabase {
     private static PlayerDatabase INSTANCE;
 
     // returns instance of database class using the singleton pattern
-    public static PlayerDatabase getInstance(final Context context) {
+    public static PlayerDatabase getInstance(final View.OnClickListener context) {
         if(INSTANCE == null) {
             synchronized (PlayerDatabase.class) {
                 if (INSTANCE == null) {

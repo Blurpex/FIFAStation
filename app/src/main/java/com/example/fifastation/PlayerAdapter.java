@@ -20,7 +20,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.MyViewHold
     Context context;
     List<Player> players;
 
-    public PlayerAdapter(Context context, List<Player> players) {
+    public PlayerAdapter(View.OnClickListener context, List<Player> players) {
         this.context = context;
         this.players = players;
     }
