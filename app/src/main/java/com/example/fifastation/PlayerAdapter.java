@@ -15,10 +15,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.MyViewHolder> {
+public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder> {
 
-    Context context;
-    List<Player> players;
+    private final Context context;
+    private final List<Player> players;
 
     public PlayerAdapter(Context context, List<Player> players) {
         this.context = context;
@@ -28,15 +28,15 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.MyViewHold
     // inflate layout and giving a look to the row
     @NonNull
     @Override
-    public PlayerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.player_list_item, parent, false);
-        return new PlayerAdapter.MyViewHolder(view);
+        return new PlayerViewHolder(view);
     }
 
     // assign values to the views in the recycler view
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         holder.name.setText(this.players.get(position).short_name);
         holder.clubAndNation.setText(this.players.get(position).club_name + " | " + this.players.get(position).nationality);
         holder.rating.setText(String.valueOf(this.players.get(position).rating));
@@ -50,14 +50,14 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.MyViewHold
     }
 
     // holds views from recycler view
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class PlayerViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, clubAndNation, rating;
         ImageView photo;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public PlayerViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.player_name);
             clubAndNation = itemView.findViewById(R.id.club_nationality);
             rating = itemView.findViewById(R.id.rating);
             photo = itemView.findViewById(R.id.player_photo);

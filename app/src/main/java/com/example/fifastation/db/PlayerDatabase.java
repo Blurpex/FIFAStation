@@ -139,4 +139,20 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns a list of 10 popular clubs
+    public static void getPopularClubs(PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getPopularClubs();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
 }

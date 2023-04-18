@@ -16,7 +16,8 @@ import com.example.fifastation.db.PlayerDatabase;
 public class HomeFragment extends Fragment {
 
     private Context context;
-    private RecyclerView recycler;
+    private RecyclerView trendingPlayersView;
+    private RecyclerView popularClubsView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,8 +27,12 @@ public class HomeFragment extends Fragment {
 
         // trending players
         this.context = container.getContext();
-        this.recycler = view.findViewById(R.id.trending_player_list);
+        this.trendingPlayersView = view.findViewById(R.id.trending_player_list);
         displayTrendingPlayers();
+
+        // popular clubs
+        this.popularClubsView = view.findViewById(R.id.popular_clubs_list);
+        displayPopularClubs();
 
         // inflate the layout
         return view;
@@ -38,8 +43,18 @@ public class HomeFragment extends Fragment {
         PlayerDatabase.getInstance(context);
         PlayerDatabase.getTopTenRatedPlayers(players -> {
             PlayerAdapter adapter = new PlayerAdapter(context, players);
-            recycler.setAdapter(adapter);
-            recycler.setLayoutManager(layoutManager);
+            trendingPlayersView.setAdapter(adapter);
+            trendingPlayersView.setLayoutManager(layoutManager);
+        });
+    }
+
+    private void displayPopularClubs() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        PlayerDatabase.getInstance(context);
+        PlayerDatabase.getPopularClubs(clubs -> {
+            ClubAdapter adapter = new ClubAdapter(context, clubs);
+            popularClubsView.setAdapter(adapter);
+            popularClubsView.setLayoutManager(layoutManager);
         });
     }
 

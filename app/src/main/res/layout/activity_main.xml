@@ -31,7 +31,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleCentered="true"
                 app:navigationIcon="@drawable/navigation_menu"
-                app:title="@string/page_title" />
+                app:title="@string/app_name" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -25,4 +25,7 @@ public interface PlayerDAO {
 
     @Query("SELECT * FROM players WHERE positions LIKE '%' || :position")
     List<Player> getPlayerByPosition(String position);
+
+    @Query("SELECT * FROM players GROUP BY club_name ORDER BY rating DESC LIMIT 10")
+    List<Player> getPopularClubs();
 }
