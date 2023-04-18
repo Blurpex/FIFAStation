@@ -17,5 +17,15 @@
         android:name="com.example.fifastation.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/clubs"
+        android:name="com.example.fifastation.ClubsFragment"
+        android:label="Clubs"
+        tools:layout="@layout/fragment_clubs" />
+    <fragment
+        android:id="@+id/favorite"
+        android:name="com.example.fifastation.FavoriteFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorite" />
 
 </navigation>
