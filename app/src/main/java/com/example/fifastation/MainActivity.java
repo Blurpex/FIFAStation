@@ -1,15 +1,15 @@
 package com.example.fifastation;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,37 +18,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // change the title of the toolbar title to 'Home'
-        CoordinatorLayout outerToolbar = findViewById(R.id.home_toolbar);
-        MaterialToolbar toolbar = outerToolbar.findViewById(R.id.topAppBar);
-        toolbar.setTitle("Home");
+        // top app bar
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.trending_player_list);
-        PlayerDatabase.getInstance(this);
-        PlayerDatabase.getTopTenRatedPlayers(players -> {
-            PlayerAdapter adapter = new PlayerAdapter(this, players);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(layoutManager);
-        });
+        // drawer
+        DrawerLayout drawer = findViewById(R.id.drawer);
+        toolbar.setNavigationOnClickListener(view -> drawer.open());
 
-        // open drawer
-        toolbar.setNavigationOnClickListener(view -> {
-            Log.d("MainActivity", "navigation drawer");
-        });
-
-        // handle if the user clicks on the menu items
-        toolbar.setOnMenuItemClickListener( menuItem -> {
-            switch(menuItem.getItemId()) {
-                case R.id.search:
-                    Log.d("MainActivity", "search: " + R.id.search);
-                    return true;
-                case R.id.settings:
-                    Log.d("MainActivity", "settings: "  + R.id.settings);
-                    return true;
-                default: return false;
-            }
+        // navigation
+        NavigationView navigation = findViewById(R.id.navigation);
+        NavController navController1 = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(navigation, navController1);
+        navController1.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+            toolbar.setTitle(navDestination.getLabel());
         });
     }
-
 }
