@@ -19,13 +19,13 @@
 
             <!-- player name input -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/player_name_search"
                 style="?attr/textInputOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/player_name_header"
                 app:startIconDrawable="@drawable/players">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_name_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -41,6 +41,7 @@
 
             <!-- rating input -->
             <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rating_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:valueFrom="50"
@@ -51,6 +52,7 @@
 
             <!-- club input -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/club_search"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +60,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/clubs">
                 <AutoCompleteTextView
+                    android:id="@+id/club_dropdown_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -74,6 +77,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/league">
                 <AutoCompleteTextView
+                    android:id="@+id/league_dropdown_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -90,6 +94,7 @@
                 android:layout_marginTop="10dp"
                 app:startIconDrawable="@drawable/nation">
                 <AutoCompleteTextView
+                    android:id="@+id/nation_dropdown_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -151,6 +156,7 @@
 
     <!-- submit button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/submit_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
