@@ -5,15 +5,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 import com.example.fifastation.db.PlayerDatabase;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.slider.Slider;
+import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class SearchFragment extends Fragment {
     private final List<String> clubList = new ArrayList<>();
     private final List<String> leagueList = new ArrayList<>();
     private final List<String> nationList = new ArrayList<>();
+    List<String> position = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,19 +42,32 @@ public class SearchFragment extends Fragment {
         PlayerDatabase.getInstance(context);
 
         // populate arrays for search queries
-        populateAutoCompleteArray();
+        populateDropdownArray();
 
+        // handle submit
         FloatingActionButton submitBtn = view.findViewById(R.id.submit_search);
-        submitBtn.setOnClickListener(view -> {
-            String playerName = ((TextInputLayout) this.view.findViewById(R.id.player_name_search)).getEditText().getText().toString();
-            float rating = ((Slider) this.view.findViewById(R.id.rating_search)).getValue();
+        submitBtn.setOnClickListener(btn -> {
+            // player name input
+            String playerName = ((TextInputLayout) view.findViewById(R.id.player_name_search)).getEditText().getText().toString();
+
+            // rating input (first index is min, second index is max)
+            List<Float> rating = ((RangeSlider) view.findViewById(R.id.rating_search)).getValues();
+
+            // club, league, and nation input
+            String club = ((AutoCompleteTextView) view.findViewById(R.id.club_dropdown_search)).getText().toString();
+            String league = ((AutoCompleteTextView) view.findViewById(R.id.league_dropdown_search)).getText().toString();
+            String nation = ((AutoCompleteTextView) view.findViewById(R.id.nation_dropdown_search)).getText().toString();
+
+            // position input
+            ((MaterialButtonToggleGroup) view.findViewById(R.id.position_search)).getCheckedButtonIds().forEach(position ->
+                this.position.add(((Button) view.findViewById(position)).getText().toString()));
         });
 
         // inflate the layout
         return view;
     }
 
-    private void populateAutoCompleteArray() {
+    private void populateDropdownArray() {
         // populate club array
         PlayerDatabase.getAllClubs(clubs -> clubs.forEach(club -> this.clubList.add(club.club_name)));
         AutoCompleteTextView clubView = view.findViewById(R.id.club_dropdown_search);

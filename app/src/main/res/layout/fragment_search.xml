@@ -117,31 +117,36 @@
                 android:padding="0dp"
                 android:scrollbars="none">
                 <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/position_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <Button
-                        style="?attr/materialCardViewElevatedStyle"
+                        android:id="@+id/forward_search"
+                        style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/forward_label"
                         android:layout_weight="1"
                         android:padding="20dp"/>
                     <Button
-                        style="?attr/materialCardViewElevatedStyle"
+                        android:id="@+id/midfield_search"
+                        style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/midfielder_label"
                         android:layout_weight="1"
                         android:padding="20dp"/>
                     <Button
-                        style="?attr/materialCardViewElevatedStyle"
+                        android:id="@+id/defender_search"
+                        style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/defender_label"
                         android:layout_weight="1"
                         android:padding="20dp"/>
                     <Button
-                        style="?attr/materialCardViewElevatedStyle"
+                        android:id="@+id/keeper_search"
+                        style="?attr/materialButtonOutlinedStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/goalkeeper_label"
