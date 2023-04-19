@@ -11,6 +11,15 @@ public interface PlayerDAO {
     @Query("SELECT * FROM players ORDER BY rating")
     List<Player> getAllPlayers();
 
+    @Query("SELECT * FROM players GROUP BY club_name")
+    List<Player> getAllClubs();
+
+    @Query("SELECT * FROM players GROUP BY league_name")
+    List<Player> getAllLeagues();
+
+    @Query("SELECT * FROM players GROUP BY nationality")
+    List<Player> getAllNations();
+
     @Query("SELECT * FROM players WHERE short_name LIKE '%' || :playerName || '%' OR long_name LIKE '%' || :playerName || '%'")
     List<Player> getPlayerByName(String playerName);
 

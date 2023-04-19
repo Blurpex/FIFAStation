@@ -3,27 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/homeItem">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/homeItem"
         android:name="com.example.fifastation.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" >
-    </fragment>
-
+        tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/players"
+        android:id="@+id/playersItem"
         android:name="com.example.fifastation.SearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/clubs"
+        android:id="@+id/clubsItem"
         android:name="com.example.fifastation.ClubsFragment"
         android:label="Clubs"
         tools:layout="@layout/fragment_clubs" />
     <fragment
-        android:id="@+id/favorite"
+        android:id="@+id/favoriteItem"
         android:name="com.example.fifastation.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />

@@ -59,6 +59,54 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns all clubs in the database
+    public static void getAllClubs(PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj =  INSTANCE.playerDAO().getAllClubs();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    // returns all leagues in the database
+    public static void getAllLeagues(PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj =  INSTANCE.playerDAO().getAllLeagues();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    // returns all nations in the database
+    public static void getAllNations(PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj =  INSTANCE.playerDAO().getAllNations();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
     // returns players with similar name as the given query
     public static void getPlayersByName(String playerName, PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {

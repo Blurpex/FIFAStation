@@ -3,34 +3,40 @@
         android:title="@string/app_name">
         <menu>
             <item
-                android:id="@+id/players"
+                android:id="@+id/homeItem"
+                android:icon="@drawable/home"
+                android:title="@string/home_item"
+                android:contentDescription="@string/home_item"
+                android:checkable="true" />
+            <item
+                android:id="@+id/playersItem"
                 android:icon="@drawable/players"
-                android:title="@string/players"
-                android:contentDescription="@string/players"
+                android:title="@string/players_item"
+                android:contentDescription="@string/players_item"
                 android:checkable="true" />
             <item
-                android:id="@+id/clubs"
+                android:id="@+id/clubsItem"
                 android:icon="@drawable/clubs"
-                android:title="@string/clubs"
-                android:contentDescription="@string/clubs"
+                android:title="@string/clubs_item"
+                android:contentDescription="@string/clubs_item"
                 android:checkable="true" />
             <item
-                android:id="@+id/favorite"
+                android:id="@+id/favoriteItem"
                 android:icon="@drawable/favorite"
-                android:title="@string/favorite"
-                android:contentDescription="@string/favorite"
+                android:title="@string/favorite_item"
+                android:contentDescription="@string/favorite_item"
                 android:checkable="true"/>
         </menu>
     </item>
 
     <item
-        android:title="@string/system">
+        android:title="@string/system_label">
         <menu>
             <item
-                android:id="@+id/settings"
+                android:id="@+id/settingsItem"
                 android:icon="@drawable/settings"
-                android:title="@string/settings"
-                android:contentDescription="@string/settings"
+                android:title="@string/settings_item"
+                android:contentDescription="@string/settings_item"
                 android:checkable="true" />
         </menu>
     </item>
