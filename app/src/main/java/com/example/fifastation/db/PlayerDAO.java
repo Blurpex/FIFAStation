@@ -47,7 +47,8 @@ public interface PlayerDAO {
             "AND (rating < :max OR :max IS NULL)" +
             "AND (club_name LIKE '%' || :club || '%' OR :club IS NULL)" +
             "AND (league_name LIKE '%' || :league || '%' OR :league IS NULL)" +
-            "AND (nationality LIKE '%' || :nation || '%' OR :nation IS NULL)")
+            "AND (nationality LIKE '%' || :nation || '%' OR :nation IS NULL)" +
+            "ORDER BY rating DESC")
     List<Player> playerQuery(String playerName, float min, float max, String club, String league, String nation);
 
 }

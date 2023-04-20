@@ -35,8 +35,8 @@
     <string name="defender_label">Defender</string>
     <string name="goalkeeper_label">Goalkeeper</string>
     <array name="initial_rating_values">
-        <item>60</item>
-        <item>90</item>
+        <item>50</item>
+        <item>100</item>
     </array>
 
     <!-- demo -->

@@ -10,5 +10,5 @@
 
     <!-- custom colors -->
     <color name="primary">#9EE493</color>
-<!--    <colol name="secondary">#0B0014</colol>-->
+    <color name="secondary">#549EE493</color>
 </resources>
