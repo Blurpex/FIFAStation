@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         // navigation
         NavigationView navigation = findViewById(R.id.navigation);
-        NavController navController1 = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(navigation, navController1);
-        navController1.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
+        NavController controller = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupWithNavController(navigation, controller);
+        controller.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
             toolbar.setTitle(navDestination.getLabel());
         });
     }

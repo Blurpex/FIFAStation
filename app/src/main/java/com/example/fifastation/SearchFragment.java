@@ -4,8 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -63,11 +63,18 @@ public class SearchFragment extends Fragment {
             ((MaterialButtonToggleGroup) view.findViewById(R.id.position_search)).getCheckedButtonIds().forEach(position ->
                 this.position.add(((Button) view.findViewById(position)).getText().toString()));
 
-            PlayerDatabase.playerQuery(playerName, rating.get(0), rating.get(1), club, league, nation, (PlayerDatabase.PlayerListener) players -> {
-                players.forEach(player -> {
-                    Log.d("playersearch", player.short_name + " - " + player.club_name + " - " + player.league_name + " - " + player.nationality);
-                });
-            });
+            // pass the values
+            Bundle bundle = new Bundle();
+            bundle.putString("playerName", playerName);
+            bundle.putFloat("min", rating.get(0));
+            bundle.putFloat("max", rating.get(1));
+            bundle.putString("club", club);
+            bundle.putString("league", league);
+            bundle.putString("nation", nation);
+
+            // navigate to the next destination
+            NavController controller = Navigation.findNavController(view);
+            controller.navigate(R.id.playerQueryFragment, bundle);
         });
 
         // inflate the layout
