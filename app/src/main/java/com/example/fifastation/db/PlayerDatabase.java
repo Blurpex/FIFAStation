@@ -139,6 +139,22 @@ public abstract class PlayerDatabase extends RoomDatabase {
         })).start();
     }
 
+    // returns one player with the corresponding ID
+    public static void getPlayerByRating(int min, int max, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().getPlayerByRating(min, max);
+            handler.sendMessage(msg);
+        })).start();
+    }
+
     // returns 10 players with the highest overall rating
     public static void getTopTenRatedPlayers(PlayerListener listener) {
         Handler handler = new Handler(Looper.getMainLooper()) {
@@ -199,6 +215,22 @@ public abstract class PlayerDatabase extends RoomDatabase {
         (new Thread(() -> {
             Message msg = handler.obtainMessage();
             msg.obj = INSTANCE.playerDAO().getPopularClubs();
+            handler.sendMessage(msg);
+        })).start();
+    }
+
+    // player query
+    public static void playerQuery(String playerName, float min, float max, String club, String league, String nation, PlayerListener listener) {
+        Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                listener.onPlayerReturned((List<Player>) msg.obj);
+            }
+        };
+        (new Thread(() -> {
+            Message msg = handler.obtainMessage();
+            msg.obj = INSTANCE.playerDAO().playerQuery(playerName, min, max, club, league, nation);
             handler.sendMessage(msg);
         })).start();
     }

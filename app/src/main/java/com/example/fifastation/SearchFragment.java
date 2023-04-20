@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
+import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,6 +62,12 @@ public class SearchFragment extends Fragment {
             // position input
             ((MaterialButtonToggleGroup) view.findViewById(R.id.position_search)).getCheckedButtonIds().forEach(position ->
                 this.position.add(((Button) view.findViewById(position)).getText().toString()));
+
+            PlayerDatabase.playerQuery(playerName, rating.get(0), rating.get(1), club, league, nation, (PlayerDatabase.PlayerListener) players -> {
+                players.forEach(player -> {
+                    Log.d("playersearch", player.short_name + " - " + player.club_name + " - " + player.league_name + " - " + player.nationality);
+                });
+            });
         });
 
         // inflate the layout
