@@ -23,6 +23,8 @@ public class PlayerDetailFragment extends Fragment {
         // get the layout
         View view = inflater.inflate(R.layout.fragment_player_detail, container, false);
 
+        // change the title of fragment
+
         // get passed values
         Context context = container.getContext();
         PlayerDatabase.getInstance(context);
@@ -48,6 +50,17 @@ public class PlayerDetailFragment extends Fragment {
             ((TextView) view.findViewById(R.id.dribbling_stat)).setText(String.valueOf(player.dribbling));
             ((TextView) view.findViewById(R.id.defending_stat)).setText(String.valueOf(player.defending));
             ((TextView) view.findViewById(R.id.physical_stat)).setText(String.valueOf(player.physical));
+
+            // more stats
+            ((TextView) view.findViewById(R.id.age_stat)).setText(player.age + " years");
+            ((TextView) view.findViewById(R.id.height_stat)).setText(player.height + "cm");
+            ((TextView) view.findViewById(R.id.weight_stat)).setText(player.weight + "kg");
+            ((TextView) view.findViewById(R.id.club_joined_stat)).setText(player.club_joined);
+            ((TextView) view.findViewById(R.id.potential_stat)).setText(String.valueOf(player.potential));
+            ((TextView) view.findViewById(R.id.value_stat)).setText(String.valueOf("€" + player.value));
+            ((TextView) view.findViewById(R.id.preferred_foot_stat)).setText(player.preferred_foot);
+            ((TextView) view.findViewById(R.id.skill_stat)).setText(String.valueOf(player.skill_moves));
+            ((TextView) view.findViewById(R.id.weak_foot_stat)).setText(String.valueOf(player.weak_foot));
 
         });
 
