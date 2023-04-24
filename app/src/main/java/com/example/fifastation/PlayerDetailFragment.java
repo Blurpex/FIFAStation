@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,8 +25,7 @@ public class PlayerDetailFragment extends Fragment {
 
         // get the layout
         View view = inflater.inflate(R.layout.fragment_player_detail, container, false);
-
-        // change the title of fragment
+        setHasOptionsMenu(true);
 
         // get passed values
         Context context = container.getContext();
@@ -33,9 +35,9 @@ public class PlayerDetailFragment extends Fragment {
         // bind the values
         PlayerDatabase.getPlayerById(playerId, tempPlayer -> {
             Player player = tempPlayer.get(0);
-            ImageView photo = view.findViewById(R.id.player_photo_detail);
 
             // player information
+            ImageView photo = view.findViewById(R.id.player_photo_detail);
             Picasso.get().load(player.player_face_url).placeholder(R.drawable.player_placeholder).into(photo);
             ((TextView) view.findViewById(R.id.player_name_detail)).setText(player.short_name);
             ((TextView) view.findViewById(R.id.club_detail)).setText(player.club_name);
@@ -66,5 +68,20 @@ public class PlayerDetailFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.favorite, menu);
+        super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.favoriteItem) {
+            item.setIcon(R.drawable.favorite_checked);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
