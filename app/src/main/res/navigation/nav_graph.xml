@@ -40,4 +40,14 @@
         tools:layout="@layout/fragment_player_query" >
     </fragment>
 
+    <fragment
+        android:id="@+id/playerDetailFragment"
+        android:name="com.example.fifastation.PlayerDetailFragment"
+        android:label="fragment_player_detail"
+        tools:layout="@layout/fragment_player_detail" />
+
+    <action
+        android:id="@+id/globalPlayerDetailFragment"
+        app:destination="@id/playerDetailFragment"/>
+
 </navigation>

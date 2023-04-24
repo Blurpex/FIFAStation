@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -73,8 +72,7 @@ public class SearchFragment extends Fragment {
             bundle.putString("nation", nation);
 
             // navigate to the next destination
-            NavController controller = Navigation.findNavController(view);
-            controller.navigate(R.id.playerQueryFragment, bundle);
+            Navigation.findNavController(view).navigate(R.id.playerQueryFragment, bundle);
         });
 
         // inflate the layout

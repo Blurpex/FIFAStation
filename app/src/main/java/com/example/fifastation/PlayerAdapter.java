@@ -1,6 +1,7 @@
 package com.example.fifastation;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fifastation.db.Player;
@@ -37,6 +39,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     // assign values to the views in the recycler view
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
+        holder.playerId = players.get(position).id;
         holder.name.setText(this.players.get(position).short_name);
         holder.clubAndNation.setText(this.players.get(position).club_name + " | " + this.players.get(position).nationality);
         holder.rating.setText(String.valueOf(this.players.get(position).rating));
@@ -52,6 +55,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
     // holds views from recycler view
     public static class PlayerViewHolder extends RecyclerView.ViewHolder {
 
+        int playerId;
         TextView name, clubAndNation, rating;
         ImageView photo;
 
@@ -61,6 +65,12 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
             clubAndNation = itemView.findViewById(R.id.club_nationality);
             rating = itemView.findViewById(R.id.rating);
             photo = itemView.findViewById(R.id.player_photo);
+
+            itemView.setOnClickListener(view -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("playerId", playerId);
+                Navigation.findNavController(view).navigate(R.id.globalPlayerDetailFragment, bundle);
+            });
         }
     }
 }
