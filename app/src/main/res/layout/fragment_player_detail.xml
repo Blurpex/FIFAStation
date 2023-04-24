@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/foot_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayerDetailFragment"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:padding="15dp">
+
+            <!-- player photo -->
+            <ImageView
+                android:id="@+id/player_photo_detail"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:contentDescription="Player Photo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <!-- player name -->
+            <TextView
+                android:id="@+id/player_name_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:focusable="false"
+                android:text="Jeremy Blum"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                app:layout_constraintStart_toEndOf="@+id/player_photo_detail"
+                app:layout_constraintTop_toTopOf="@+id/player_photo_detail" />
+
+            <!-- club -->
+            <TextView
+                android:id="@+id/club_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:focusable="false"
+                android:text="PSU"
+                app:layout_constraintBottom_toTopOf="@+id/league_detail"
+                app:layout_constraintStart_toEndOf="@+id/player_photo_detail" />
+
+            <!-- league -->
+            <TextView
+                android:id="@+id/league_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:focusable="false"
+                android:text="NCAA Div III"
+                app:layout_constraintBottom_toTopOf="@+id/nation_detail"
+                app:layout_constraintStart_toEndOf="@+id/player_photo_detail" />
+
+            <!-- nation -->
+            <TextView
+                android:id="@+id/nation_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:focusable="false"
+                android:text="USA"
+                app:layout_constraintBottom_toBottomOf="@+id/player_photo_detail"
+                app:layout_constraintStart_toEndOf="@+id/player_photo_detail" />
+
+            <!-- rating -->
+            <TextView
+                android:id="@+id/rating_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:text="@string/rating_list"
+                android:textAppearance="?attr/textAppearanceDisplayLarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/secondary"
+            android:padding="5dp">
+
+            <!-- center guideline -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- pace label -->
+            <TextView
+                android:id="@+id/pace_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:text="Pace"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- shooting label -->
+            <TextView
+                android:id="@+id/shooting_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:text="Shooting"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pace_label" />
+
+            <!-- passing label -->
+            <TextView
+                android:id="@+id/passing_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:focusable="false"
+                android:text="Passing"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shooting_label" />
+
+            <!-- dribbling label -->
+            <TextView
+                android:id="@+id/dribbling_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:text="Dribbling"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- defending label -->
+            <TextView
+                android:id="@+id/defending_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:text="Defending"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/dribbling_label" />
+
+            <!-- physical label -->
+            <TextView
+                android:id="@+id/physical_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:focusable="false"
+                android:text="Physical"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/defending_label" />
+
+            <!-- pace stat -->
+            <TextView
+                android:id="@+id/pace_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- shooting stat -->
+            <TextView
+                android:id="@+id/shooting_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/pace_stat" />
+
+            <!-- passing stat -->
+            <TextView
+                android:id="@+id/passing_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/shooting_stat" />
+
+            <!-- dribbling stat -->
+            <TextView
+                android:id="@+id/dribbling_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- defending stat -->
+            <TextView
+                android:id="@+id/defending_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dribbling_stat" />
+
+            <!-- physical stat -->
+            <TextView
+                android:id="@+id/physical_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:focusable="false"
+                android:text="99"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defending_stat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/secondary"
+            android:padding="5dp">
+
+            <!-- age label -->
+            <TextView
+                android:id="@+id/age_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Age"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- height label -->
+            <TextView
+                android:id="@+id/height_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/age_detail" />
+
+            <!-- weight label -->
+            <TextView
+                android:id="@+id/weight_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/height_detail" />
+
+            <!-- club joined label -->
+            <TextView
+                android:id="@+id/club_joined_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Club Joined"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weight_detail" />
+
+            <!-- potential label -->
+            <TextView
+                android:id="@+id/potential_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Potential"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/club_joined_detail" />
+
+            <!-- value label -->
+            <TextView
+                android:id="@+id/value_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Value"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/potential_detail" />
+
+            <!-- preferred foot label-->
+            <TextView
+                android:id="@+id/preferred_foot_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Preferred Foot"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/value_detail" />
+
+            <!-- skill label -->
+            <TextView
+                android:id="@+id/skill_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Skill"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/preferred_foot_detail" />
+
+            <!-- weak foot label -->
+            <TextView
+                android:id="@+id/weak_foot_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Weak Foot"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_detail" />
+
+            <!-- age stat -->
+            <TextView
+                android:id="@+id/age_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- height stat-->
+            <TextView
+                android:id="@+id/height_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_stat" />
+
+            <!-- weight stat -->
+            <TextView
+                android:id="@+id/weight_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/height_stat" />
+
+            <!-- club joined stat -->
+            <TextView
+                android:id="@+id/club_joined_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="12/12/2012"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weight_stat" />
+
+            <!-- potential stat -->
+            <TextView
+                android:id="@+id/potential_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="99"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/club_joined_stat" />
+
+            <!-- value stat -->
+            <TextView
+                android:id="@+id/value_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="99M"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/potential_stat" />
+
+            <!-- preferred foot stat -->
+            <TextView
+                android:id="@+id/preferred_foot_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/value_stat" />
+
+            <!-- skill stat -->
+            <TextView
+                android:id="@+id/skill_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="0x1F60A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/preferred_foot_stat" />
+
+            <!-- weak foot stat -->
+            <TextView
+                android:id="@+id/weak_foot_stat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="0x1F60A"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill_stat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

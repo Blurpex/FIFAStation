@@ -10,20 +10,44 @@
         android:name="com.example.fifastation.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+
     <fragment
         android:id="@+id/playersItem"
         android:name="com.example.fifastation.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_playersItem_to_playerQueryFragment"
+            app:destination="@id/playerQueryFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/clubsItem"
         android:name="com.example.fifastation.ClubsFragment"
         android:label="Clubs"
         tools:layout="@layout/fragment_clubs" />
+
     <fragment
         android:id="@+id/favoriteItem"
         android:name="com.example.fifastation.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/playerQueryFragment"
+        android:name="com.example.fifastation.PlayerQueryFragment"
+        android:label="Players"
+        tools:layout="@layout/fragment_player_query" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/playerDetailFragment"
+        android:name="com.example.fifastation.PlayerDetailFragment"
+        android:label="fragment_player_detail"
+        tools:layout="@layout/fragment_player_detail" />
+
+    <action
+        android:id="@+id/globalPlayerDetailFragment"
+        app:destination="@id/playerDetailFragment"/>
 
 </navigation>

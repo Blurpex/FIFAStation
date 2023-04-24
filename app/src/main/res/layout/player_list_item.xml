@@ -12,9 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:checkable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -54,7 +51,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/rating"
+                android:id="@+id/rating_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"

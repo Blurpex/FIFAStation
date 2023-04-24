@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +61,18 @@ public class SearchFragment extends Fragment {
             // position input
             ((MaterialButtonToggleGroup) view.findViewById(R.id.position_search)).getCheckedButtonIds().forEach(position ->
                 this.position.add(((Button) view.findViewById(position)).getText().toString()));
+
+            // pass the values
+            Bundle bundle = new Bundle();
+            bundle.putString("playerName", playerName);
+            bundle.putFloat("min", rating.get(0));
+            bundle.putFloat("max", rating.get(1));
+            bundle.putString("club", club);
+            bundle.putString("league", league);
+            bundle.putString("nation", nation);
+
+            // navigate to the next destination
+            Navigation.findNavController(view).navigate(R.id.playerQueryFragment, bundle);
         });
 
         // inflate the layout
