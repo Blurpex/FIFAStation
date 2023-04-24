@@ -15,8 +15,6 @@ import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 public class PlayerDetailFragment extends Fragment {
 
     @Override
@@ -33,15 +31,15 @@ public class PlayerDetailFragment extends Fragment {
         // bind the values
         PlayerDatabase.getPlayerById(playerId, tempPlayer -> {
             Player player = tempPlayer.get(0);
-            ImageView photo = view.findViewById(R.id.player_photo_details);
+            ImageView photo = view.findViewById(R.id.player_photo_detail);
 
             // player information
             Picasso.get().load(player.player_face_url).placeholder(R.drawable.player_placeholder).into(photo);
-            ((TextView) view.findViewById(R.id.player_name_details)).setText(player.short_name);
-            ((TextView) view.findViewById(R.id.club_details)).setText(player.club_name);
-            ((TextView) view.findViewById(R.id.league_details)).setText(player.league_name);
-            ((TextView) view.findViewById(R.id.nation_details)).setText(player.nationality);
-            ((TextView) view.findViewById(R.id.rating)).setText(String.valueOf(player.rating));
+            ((TextView) view.findViewById(R.id.player_name_detail)).setText(player.short_name);
+            ((TextView) view.findViewById(R.id.club_detail)).setText(player.club_name);
+            ((TextView) view.findViewById(R.id.league_detail)).setText(player.league_name);
+            ((TextView) view.findViewById(R.id.nation_detail)).setText(player.nationality);
+            ((TextView) view.findViewById(R.id.rating_detail)).setText(String.valueOf(player.rating));
 
             // player stats
             ((TextView) view.findViewById(R.id.pace_stat)).setText(String.valueOf(player.pace));

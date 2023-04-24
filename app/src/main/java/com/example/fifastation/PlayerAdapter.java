@@ -63,7 +63,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.PlayerView
             super(itemView);
             name = itemView.findViewById(R.id.player_name);
             clubAndNation = itemView.findViewById(R.id.club_nationality);
-            rating = itemView.findViewById(R.id.rating);
+            rating = itemView.findViewById(R.id.rating_detail);
             photo = itemView.findViewById(R.id.player_photo);
 
             itemView.setOnClickListener(view -> {
