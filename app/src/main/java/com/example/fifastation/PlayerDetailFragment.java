@@ -1,10 +1,12 @@
 package com.example.fifastation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +21,8 @@ import com.example.fifastation.db.PlayerDatabase;
 import com.squareup.picasso.Picasso;
 
 public class PlayerDetailFragment extends Fragment {
-
+    private int playerId;
+    private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -28,10 +31,9 @@ public class PlayerDetailFragment extends Fragment {
         setHasOptionsMenu(true);
 
         // get passed values
-        Context context = container.getContext();
+        this.context = container.getContext();
         PlayerDatabase.getInstance(context);
-        int playerId = getArguments().getInt("playerId");
-
+        this.playerId = getArguments().getInt("playerId");
         // bind the values
         PlayerDatabase.getPlayerById(playerId, tempPlayer -> {
             Player player = tempPlayer.get(0);
@@ -80,8 +82,14 @@ public class PlayerDetailFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.favoriteItem) {
             item.setIcon(R.drawable.favorite_checked);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("playerId", playerId);
+            editor.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
