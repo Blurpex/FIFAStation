@@ -20,6 +20,8 @@ import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Set;
+
 public class PlayerDetailFragment extends Fragment {
     private int playerId;
     private Context context;
@@ -82,14 +84,18 @@ public class PlayerDetailFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.favoriteItem) {
             item.setIcon(R.drawable.favorite_checked);
+
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("playerId", playerId);
-            editor.commit();
+            String playerIds = sharedPreferences.getString("playerIds", "");
+            if (!(playerIds.contains(String.valueOf(playerId)))) {
+                playerIds = playerIds + playerId + "-";
+                editor.putString("playerIds", playerIds);
+                editor.apply();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }
