@@ -37,29 +37,30 @@ public class FavoriteFragment extends Fragment {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String playerIds = sharedPref.getString("playerIds", "");
         Log.d("PlayerId: ", playerIds);
-        List<String[]> playerList = new ArrayList<>();
-        playerList.add(playerIds.split("-"));
-        String[] playersList = playerList.get(0);
+        List<String[]> playerId = new ArrayList<>();
+        playerId.add(playerIds.split("-"));
+        String[] playerIdList = playerId.get(0);
         List<Integer> list = new ArrayList<>();
-        for(String player : playersList ){
+        for(String player : playerIdList ){
             list.add(Integer.parseInt(player));
         }
-        List<Player> playerArray = new ArrayList<>();
+        List<Player> playerList = new ArrayList<>();
         list.forEach(x-> PlayerDatabase.getPlayerById(x, new PlayerDatabase.PlayerListener() {
             @Override
             public void onPlayerReturned(List<Player> player) {
                 Player tempPlayer = player.get(0);
-                playerArray.add(tempPlayer);
+                playerList.add(tempPlayer);
                 Log.d("PlayerID", tempPlayer.long_name);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                PlayerAdapter adapter = new PlayerAdapter(context, playerList);
+                favoritePlayersView.setAdapter(adapter);
+                favoritePlayersView.setLayoutManager(layoutManager);
             }
         }));
 
 //        List<Player> liist = new ArrayList<>();
 //        liist.add(playerArray.)
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        PlayerAdapter adapter = new PlayerAdapter(context, playerArray);
-        favoritePlayersView.setAdapter(adapter);
-        favoritePlayersView.setLayoutManager(layoutManager);
+
 
         // inflate layout
         return view;
