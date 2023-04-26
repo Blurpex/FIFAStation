@@ -20,13 +20,18 @@ import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 import com.squareup.picasso.Picasso;
 
-import java.util.Set;
-
 public class PlayerDetailFragment extends Fragment {
     private int playerId;
     private Context context;
+
+    private boolean favorite = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // save the status of favorite
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            favorite = savedInstanceState.getBoolean("favorite");
+        }
 
         // get the layout
         View view = inflater.inflate(R.layout.fragment_player_detail, container, false);
@@ -78,13 +83,22 @@ public class PlayerDetailFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.favorite, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
+        if(favorite) {
+            menu.getItem(0).setIcon(R.drawable.favorite_checked);
+        } else {
+            menu.getItem(0).setIcon(R.drawable.favorite_unchecked);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.favoriteItem) {
-            item.setIcon(R.drawable.favorite_checked);
-
+            favorite = !favorite;
+            if(favorite){
+                item.setIcon(R.drawable.favorite_checked);
+            } else {
+                item.setIcon(R.drawable.favorite_unchecked);
+            }
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             String playerIds = sharedPreferences.getString("playerIds", "");
@@ -98,4 +112,9 @@ public class PlayerDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("favorite", favorite);
+    }
 }

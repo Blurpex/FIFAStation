@@ -58,10 +58,6 @@ public class FavoriteFragment extends Fragment {
             }
         }));
 
-//        List<Player> liist = new ArrayList<>();
-//        liist.add(playerArray.)
-
-
         // inflate layout
         return view;
     }
