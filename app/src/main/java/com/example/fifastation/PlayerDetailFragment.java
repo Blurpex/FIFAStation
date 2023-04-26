@@ -93,19 +93,24 @@ public class PlayerDetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.favoriteItem) {
-            favorite = !favorite;
-            if(favorite){
-                item.setIcon(R.drawable.favorite_checked);
-            } else {
-                item.setIcon(R.drawable.favorite_unchecked);
-            }
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             String playerIds = sharedPreferences.getString("playerIds", "");
-            if (!(playerIds.contains(String.valueOf(playerId)))) {
-                playerIds = playerIds + playerId + "-";
-                editor.putString("playerIds", playerIds);
-                editor.apply();
+            favorite = !favorite;
+            if(favorite){
+                item.setIcon(R.drawable.favorite_checked);
+                if (!(playerIds.contains(String.valueOf(playerId)))) {
+                    playerIds = playerIds + playerId + "-";
+                    editor.putString("playerIds", playerIds);
+                    editor.apply();
+                }
+            } else {
+                item.setIcon(R.drawable.favorite_unchecked);
+                if(playerIds.contains(String.valueOf(playerId))){
+                    playerIds = playerIds.replace(String.valueOf(playerId)+"-","");
+                    editor.putString("playerIds", playerIds);
+                    editor.apply();
+                }
             }
             return true;
         }
