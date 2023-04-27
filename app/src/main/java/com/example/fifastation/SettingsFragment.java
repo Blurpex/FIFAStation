@@ -3,14 +3,12 @@ package com.example.fifastation;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -52,7 +50,7 @@ public class SettingsFragment extends Fragment {
             editor.apply();
 
             // change the theme
-            getActivity().recreate();
+            requireActivity().recreate();
         });
 
         // inflate layout

@@ -3,9 +3,11 @@ package com.example.fifastation;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.slider.RangeSlider;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class SearchFragment extends Fragment {
 
     private View view;
     private Context context;
+    String playerName;
     private final List<String> clubList = new ArrayList<>();
     private final List<String> leagueList = new ArrayList<>();
     private final List<String> nationList = new ArrayList<>();
@@ -41,6 +45,10 @@ public class SearchFragment extends Fragment {
         this.context = container.getContext();
         PlayerDatabase.getInstance(context);
 
+        // persist player name
+        if(savedInstanceState != null)
+            ((TextInputEditText) view.findViewById(R.id.player_name_text)).setText(savedInstanceState.getString(playerName));
+
         // populate arrays for search queries
         populateDropdownArray();
 
@@ -48,7 +56,7 @@ public class SearchFragment extends Fragment {
         FloatingActionButton submitBtn = view.findViewById(R.id.submit_search);
         submitBtn.setOnClickListener(btn -> {
             // player name input
-            String playerName = ((TextInputLayout) view.findViewById(R.id.player_name_search)).getEditText().getText().toString();
+            this.playerName = ((TextInputLayout) view.findViewById(R.id.player_name_search)).getEditText().getText().toString();
 
             // rating input (first index is min, second index is max)
             List<Float> rating = ((RangeSlider) view.findViewById(R.id.rating_search)).getValues();
@@ -97,5 +105,12 @@ public class SearchFragment extends Fragment {
         AutoCompleteTextView nationView = view.findViewById(R.id.nation_dropdown_search);
         ArrayAdapter<String> nationAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, this.nationList);
         nationView.setAdapter(nationAdapter);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("playerName", playerName);
     }
 }

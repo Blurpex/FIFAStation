@@ -14,14 +14,14 @@
     <color name="dimGreen">#549EE493</color>
     <color name="darkRed">#E60000</color>
     <color name="lightRed">#FF6666</color>
-    <color name="dimRed">#8CFF6666</color>
+    <color name="dimRed">#54FF6666</color>
     <color name="darkBlue">#0099E6</color>
     <color name="lightBlue">#66B3FF</color>
-    <color name="dimBlue">#8C66B3FF</color>
+    <color name="dimBlue">#5466B3FF</color>
     <color name="darkYellow">#E6BF00</color>
     <color name="lightYellow">#FFCC66</color>
-    <color name="dimYellow">#8CFFCC66</color>
+    <color name="dimYellow">#54FFCC66</color>
     <color name="darkPurple">#7300E6</color>
     <color name="lightPurple">#B366FF</color>
-    <color name="dimPurple">#8CB366FF</color>
+    <color name="dimPurple">#54B366FF</color>
 </resources>

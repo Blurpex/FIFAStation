@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(
             sharedPreferences.getBoolean("darkMode", false)
                 ? AppCompatDelegate.MODE_NIGHT_YES
-                : (AppCompatDelegate.MODE_NIGHT_NO)
+                : AppCompatDelegate.MODE_NIGHT_NO
         );
 
         // inflate layout
