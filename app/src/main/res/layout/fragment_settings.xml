@@ -32,10 +32,10 @@
             app:layout_constraintTop_toBottomOf="@+id/theme_label">
 
             <RadioButton
-                android:id="@+id/theme_default"
+                android:id="@+id/theme_green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/default_color" />
+                android:text="@string/green" />
 
             <RadioButton
                 android:id="@+id/theme_red"
@@ -75,6 +75,7 @@
             app:layout_constraintTop_toBottomOf="@id/themeRadioGroup" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/dark_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dark_mode_label"

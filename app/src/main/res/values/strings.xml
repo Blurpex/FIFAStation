@@ -41,7 +41,7 @@
 
     <!-- fragment_settings.xml -->
     <string name="theme_label">Theme</string>
-    <string name="default_color">Default</string>
+    <string name="green">Green</string>
     <string name="blue">Blue</string>
     <string name="red">Red</string>
     <string name="yellow">Yellow</string>

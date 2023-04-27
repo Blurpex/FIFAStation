@@ -2,6 +2,7 @@ package com.example.fifastation;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -35,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
                 setTheme(R.style.Theme_FIFAStation_Red);
                 break;
         }
+
+        // dark mode
+        AppCompatDelegate.setDefaultNightMode(
+            sharedPreferences.getBoolean("darkMode", false)
+                ? AppCompatDelegate.MODE_NIGHT_YES
+                : (AppCompatDelegate.MODE_NIGHT_NO)
+        );
 
         // inflate layout
         super.onCreate(savedInstanceState);
