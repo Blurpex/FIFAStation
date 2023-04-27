@@ -27,14 +27,13 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:elevation="4dp"
-                app:titleCentered="true"
+                app:titleCentered="false"
                 app:navigationIcon="@drawable/navigation_menu"
                 app:title="@string/app_name" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <!-- navigation host fragment -->
-        <!-- TODO: does not work with FragmentContainerView -->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
