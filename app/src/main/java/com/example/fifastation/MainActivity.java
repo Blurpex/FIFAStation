@@ -18,6 +18,9 @@ import android.widget.Toast;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -56,10 +59,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // setup navigation
+        Set<Integer> topLevelDestinations = new HashSet<>();
+        topLevelDestinations.add(R.id.homeItem);
+        topLevelDestinations.add(R.id.playersItem);
+        topLevelDestinations.add(R.id.clubsItem);
+        topLevelDestinations.add(R.id.favoriteItem);
+        topLevelDestinations.add(R.id.settingsItem);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
         DrawerLayout drawer = findViewById(R.id.drawer);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).setDrawerLayout(drawer).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations).setDrawerLayout(drawer).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationView navigation = findViewById(R.id.navigation);
         NavigationUI.setupWithNavController(navigation, navController);
