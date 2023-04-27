@@ -11,4 +11,16 @@
     <!-- custom colors -->
     <color name="primary">#9EE493</color>
     <color name="secondary">#549EE493</color>
+    <color name="red">#E60000</color>
+    <color name="lightRed">#FF6666</color>
+    <color name="dimRed">#FF6666</color>
+    <color name="blue">#0099E6</color>
+    <color name="lightBlue">#66B3FF</color>
+    <color name="dimBlue">#66B3FF</color>
+    <color name="yellow">#E6BF00</color>
+    <color name="lightYellow">#FFCC66</color>
+    <color name="dimYellow">#FFCC66</color>
+    <color name="purple">#7300E6</color>
+    <color name="lightPurple">#B366FF</color>
+    <color name="gray">#778899</color>
 </resources>

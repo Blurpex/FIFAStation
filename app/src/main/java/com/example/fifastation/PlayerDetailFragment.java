@@ -22,7 +22,6 @@ import com.squareup.picasso.Picasso;
 
 public class PlayerDetailFragment extends Fragment {
 
-    private Context context;
     private int playerId;
     private boolean favoriteStatus;
     private SharedPreferences sharedPreferences;
@@ -40,7 +39,7 @@ public class PlayerDetailFragment extends Fragment {
         this.playerId = getArguments().getInt("playerId");
 
         // bind the values
-        this.context = container.getContext();
+        Context context = container.getContext();
         PlayerDatabase.getInstance(context);
         PlayerDatabase.getPlayerById(playerId, tempPlayer -> {
             Player player = tempPlayer.get(0);

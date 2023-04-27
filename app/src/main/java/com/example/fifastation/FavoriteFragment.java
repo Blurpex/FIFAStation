@@ -1,7 +1,6 @@
 package com.example.fifastation;
 
 import android.content.Context;
-import android.content.SearchRecentSuggestionsProvider;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import android.view.ViewGroup;
 import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +46,7 @@ public class FavoriteFragment extends Fragment {
 
                 LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                 PlayerAdapter adapter = new PlayerAdapter(context, favList);
-                RecyclerView favoritePlayersView = view.findViewById(R.id.favorite_Player_View);
+                RecyclerView favoritePlayersView = view.findViewById(R.id.favorite_player_view);
                 favoritePlayersView.setAdapter(adapter);
                 favoritePlayersView.setLayoutManager(layoutManager);
             });

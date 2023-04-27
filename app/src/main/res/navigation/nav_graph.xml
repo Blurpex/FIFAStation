@@ -37,8 +37,7 @@
         android:id="@+id/playerQueryFragment"
         android:name="com.example.fifastation.PlayerQueryFragment"
         android:label="Players"
-        tools:layout="@layout/fragment_player_query" >
-    </fragment>
+        tools:layout="@layout/fragment_player_query" />
 
     <fragment
         android:id="@+id/playerDetailFragment"
@@ -49,5 +48,11 @@
     <action
         android:id="@+id/globalPlayerDetailFragment"
         app:destination="@id/playerDetailFragment" />
+
+    <fragment
+        android:id="@+id/settingsItem"
+        android:name="com.example.fifastation.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
 
 </navigation>

@@ -6,7 +6,6 @@
     android:id="@+id/drawer"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@color/secondary"
     tools:openDrawer="start">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,10 +25,8 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/primary"
+                android:background="?attr/colorPrimary"
                 android:elevation="4dp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleCentered="true"
                 app:navigationIcon="@drawable/navigation_menu"
                 app:title="@string/app_name" />

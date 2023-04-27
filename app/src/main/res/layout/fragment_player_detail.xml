@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
+            android:background="?attr/colorPrimary"
             android:padding="15dp">
 
             <!-- player photo -->
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/secondary"
+            android:background="?attr/colorSecondary"
             android:padding="5dp">
 
             <!-- center guideline -->
@@ -261,7 +261,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="5dp"
-            android:background="@color/secondary"
+            android:background="?attr/colorSecondary"
             android:padding="5dp">
 
             <!-- age label -->
