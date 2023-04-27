@@ -1,17 +1,21 @@
 package com.example.fifastation;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.example.fifastation.db.PlayerDatabase;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -40,6 +44,31 @@ public class SearchFragment extends Fragment {
         // get context
         this.context = container.getContext();
         PlayerDatabase.getInstance(context);
+
+        // setting theme
+        FrameLayout layout = view.findViewById(R.id.frameLayout);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String color = prefs.getString("Theme", "");
+        Log.d("color", color);
+        if(color.equals("red")){
+            layout.setBackgroundColor(getResources().getColor(R.color.lightRed));
+        }
+        else if(color.equals("blue")){
+            layout.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+        }
+        else if(color.equals("yellow")){
+            layout.setBackgroundColor(getResources().getColor(R.color.lightYellow));
+        }
+        else if(color.equals("purple")){
+            layout.setBackgroundColor(getResources().getColor(R.color.lightPurple));
+        }
+        else if(color.equals("black")){
+            layout.setBackgroundColor(getResources().getColor(R.color.gray));
+        }
+        else if(color.equals("default")){
+            layout.setBackgroundColor(getResources().getColor(R.color.secondary));
+        }
+
 
         // populate arrays for search queries
         populateDropdownArray();

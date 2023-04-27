@@ -50,5 +50,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="blue">BLUE</string>
     <string name="red">RED</string>
+    <string name="submit">SUBMIT</string>
+    <string name="yellow">YELLOW</string>
+    <string name="purple">PURPLE</string>
+    <string name="black">BLACK</string>
+    <string name="default_color">DEFAULT</string>
 
 </resources>

@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frameLayout"
     tools:context=".ClubsFragment">
 
     <TextView
@@ -28,6 +29,13 @@
             android:layout_height="wrap_content">
 
             <RadioButton
+                android:id="@+id/theme_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_color"
+                android:layout_margin="10dp"/>
+
+            <RadioButton
                 android:id="@+id/theme_red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,9 +47,35 @@
                 android:layout_height="wrap_content"
                 android:text="@string/blue"
                 android:layout_margin="10dp"/>
+            <RadioButton
+                android:id="@+id/theme_purple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/purple"
+                android:layout_margin="10dp"/>
+            <RadioButton
+                android:id="@+id/theme_yellow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yellow"
+                android:layout_margin="10dp"/>
+            <RadioButton
+                android:id="@+id/theme_black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/black"
+                android:layout_margin="10dp"/>
 
 
         </RadioGroup>
     </LinearLayout>
+    <Button
+        android:id="@+id/changeTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom|right"
+        />
 
 </FrameLayout>
