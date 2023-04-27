@@ -21,27 +21,27 @@ import com.example.fifastation.db.PlayerDatabase;
 import com.squareup.picasso.Picasso;
 
 public class PlayerDetailFragment extends Fragment {
-    private int playerId;
-    private Context context;
 
-    private boolean favorite = false;
+    private Context context;
+    private int playerId;
+    private boolean favoriteStatus;
+    private SharedPreferences sharedPreferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // save the status of favorite
-        super.onCreate(savedInstanceState);
-        if(savedInstanceState != null){
-            favorite = savedInstanceState.getBoolean("favorite");
-        }
 
         // get the layout
         View view = inflater.inflate(R.layout.fragment_player_detail, container, false);
+
+        // enable options menu
         setHasOptionsMenu(true);
 
-        // get passed values
+        // get passed values from bundle
+        this.playerId = getArguments().getInt("playerId");
+
+        // bind the values
         this.context = container.getContext();
         PlayerDatabase.getInstance(context);
-        this.playerId = getArguments().getInt("playerId");
-        // bind the values
         PlayerDatabase.getPlayerById(playerId, tempPlayer -> {
             Player player = tempPlayer.get(0);
 
@@ -75,51 +75,50 @@ public class PlayerDetailFragment extends Fragment {
 
         });
 
+        // get the status of favorite
+        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String favoritePlayers = sharedPreferences.getString("favoritePlayers", "");
+        this.favoriteStatus = favoritePlayers.contains(String.valueOf(playerId));
+
         // Inflate the layout for this fragment
         return view;
     }
 
+    // inflate the options menu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.favorite, menu);
         super.onCreateOptionsMenu(menu, menuInflater);
-        if(favorite) {
-            menu.getItem(0).setIcon(R.drawable.favorite_checked);
-        } else {
-            menu.getItem(0).setIcon(R.drawable.favorite_unchecked);
-        }
+
+        // add favorite icon
+        if(favoriteStatus) menu.getItem(0).setIcon(R.drawable.favorite_checked);
+        else menu.getItem(0).setIcon(R.drawable.favorite_unchecked);
     }
 
+    // handle clicks in options menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         if(item.getItemId() == R.id.favoriteItem) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            // get the current saved players
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            String playerIds = sharedPreferences.getString("playerIds", "");
-            favorite = !favorite;
-            if(favorite){
+            String favoritePlayers = sharedPreferences.getString("favoritePlayers", "");
+
+            // change the status
+            favoriteStatus = !favoriteStatus;
+
+            // add or remove the favorite
+            if(favoriteStatus) {
                 item.setIcon(R.drawable.favorite_checked);
-                if (!(playerIds.contains(String.valueOf(playerId)))) {
-                    playerIds = playerIds + playerId + "-";
-                    editor.putString("playerIds", playerIds);
-                    editor.apply();
-                }
+                favoritePlayers = favoritePlayers + playerId + "-";
             } else {
                 item.setIcon(R.drawable.favorite_unchecked);
-                if(playerIds.contains(String.valueOf(playerId))){
-                    playerIds = playerIds.replace(String.valueOf(playerId)+"-","");
-                    editor.putString("playerIds", playerIds);
-                    editor.apply();
-                }
+                favoritePlayers = favoritePlayers.replace(playerId + "-","");
             }
+            editor.putString("favoritePlayers", favoritePlayers);
+            editor.apply();
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("favorite", favorite);
     }
 }

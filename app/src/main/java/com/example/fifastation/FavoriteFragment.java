@@ -24,44 +24,36 @@ import java.util.List;
 
 public class FavoriteFragment extends Fragment {
 
-    private Context context;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // get the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
-        this.context = container.getContext();
+
+        // get an instance of database
+        Context context = container.getContext();
         PlayerDatabase.getInstance(context);
-        RecyclerView favoritePlayersView = view.findViewById(R.id.favorite_Player_View);
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        String playerIds = sharedPref.getString("playerIds", "");
+        // get favorite players from shared preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String tempFav = sharedPreferences.getString("favoritePlayers", "");
+        String[] favoritePlayers = new String[0];
+        if(!tempFav.isEmpty())
+            favoritePlayers = tempFav.split("-");
 
-        // if favorite player list is empty then skip and display empty
-        if(!(playerIds.isEmpty())){
-            Log.d("PlayerId: ", playerIds);
-            List<String[]> playerId = new ArrayList<>();
-            playerId.add(playerIds.split("-"));
-            String[] playerIdList = playerId.get(0);
-            List<Integer> list = new ArrayList<>();
-            for(String player : playerIdList ){
-                list.add(Integer.parseInt(player));
-            }
-            List<Player> playerList = new ArrayList<>();
-            list.forEach(x-> PlayerDatabase.getPlayerById(x, new PlayerDatabase.PlayerListener() {
-                @Override
-                public void onPlayerReturned(List<Player> player) {
-                    Player tempPlayer = player.get(0);
-                    playerList.add(tempPlayer);
-                    Log.d("PlayerID", tempPlayer.long_name);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-                    PlayerAdapter adapter = new PlayerAdapter(context, playerList);
-                    favoritePlayersView.setAdapter(adapter);
-                    favoritePlayersView.setLayoutManager(layoutManager);
-                }
-            }));
+        // display favorite players
+        List<Player> favList = new ArrayList<>();
+        for(String favPlayer: favoritePlayers) {
+            PlayerDatabase.getPlayerById(Integer.parseInt(favPlayer), player -> {
+                favList.add(player.get(0));
+
+                LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+                PlayerAdapter adapter = new PlayerAdapter(context, favList);
+                RecyclerView favoritePlayersView = view.findViewById(R.id.favorite_Player_View);
+                favoritePlayersView.setAdapter(adapter);
+                favoritePlayersView.setLayoutManager(layoutManager);
+            });
         }
-
 
         // inflate layout
         return view;
