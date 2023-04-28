@@ -24,4 +24,6 @@
     <color name="darkPurple">#7300E6</color>
     <color name="lightPurple">#B366FF</color>
     <color name="dimPurple">#54B366FF</color>
+    <color name="lightGray">#ABB0B8</color>
+    <color name="dimGray">#63666A</color>
 </resources>

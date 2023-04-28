@@ -38,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
             case "Red":
                 setTheme(R.style.Theme_FIFAStation_Red);
                 break;
+            case "Purple":
+                setTheme(R.style.Theme_FIFAStation_Purple);
+                break;
+            case "Yellow":
+                setTheme(R.style.Theme_FIFAStation_Yellow);
+                break;
+            case "Black":
+                setTheme(R.style.Theme_FIFAStation_Black);
+                break;
         }
 
         // dark mode
