@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // ack dialog
-        displayCopyrightDialog();
-
         // setup toolbar
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
+
+        // display dialog
+        displayCopyrightDialog();
 
         // setup navigation
         Set<Integer> topLevelDestinations = new HashSet<>();
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
     }
 
-    // ask user to ack
+    //ask user to ack
     private void displayCopyrightDialog() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setTitle("Terms & Conditions");
             alertDialog.setMessage("This app is not for commercial use and not intended to use copyright.");
             alertDialog.setIcon(R.drawable.ic_alert);
-            alertDialog.setPositiveButton("Acknowgledge", (dialog, which) ->
+            alertDialog.setPositiveButton("Acknowledge", (dialog, which) ->
                     Toast.makeText(MainActivity.this, "Thank you for acknowledging!", Toast.LENGTH_LONG).show());
             alertDialog.show();
 
@@ -100,4 +100,5 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
     }
+
 }
