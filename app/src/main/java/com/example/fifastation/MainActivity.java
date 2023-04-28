@@ -30,14 +30,21 @@ public class MainActivity extends AppCompatActivity {
             case "Red":
                 setTheme(R.style.Theme_FIFAStation_Red);
                 break;
+            case "Yellow":
+                setTheme(R.style.Theme_FIFAStation_Yellow);
+                break;
+            case "Purple":
+                setTheme(R.style.Theme_FIFAStation_Purple);
+                break;
+            case "Black":
+                setTheme(R.style.Theme_FIFAStation_Black);
+                break;
+
         }
 
         // inflate layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // display dialog
-        displayCopyrightDialog();
 
         // top app bar
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
@@ -46,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         // drawer
         DrawerLayout drawer = findViewById(R.id.drawer);
         toolbar.setNavigationOnClickListener(view -> drawer.open());
+
+        // display dialog
+        displayCopyrightDialog();
 
         // navigation
         NavigationView navigation = findViewById(R.id.navigation);
@@ -60,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayCopyrightDialog() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         // show the dialog only once
         if(!sharedPreferences.getBoolean("dataAck", false)) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
