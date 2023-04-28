@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setTitle("Terms & Conditions");
             alertDialog.setMessage("This app is not for commercial use and not intended to use copyright.");
             alertDialog.setIcon(R.drawable.ic_alert);
-            alertDialog.setPositiveButton("Acknowledge", (dialog, which) ->
+            alertDialog.setPositiveButton("Acknowgledge", (dialog, which) ->
                     Toast.makeText(MainActivity.this, "Thank you for acknowledging!", Toast.LENGTH_LONG).show());
             alertDialog.show();
 
