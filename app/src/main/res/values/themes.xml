@@ -3,13 +3,13 @@
     <style name="Theme.FIFAStation" parent="Theme.Material3.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorPrimary">@color/lightGreen</item>
+        <item name="colorPrimaryVariant">@color/lightGreen</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorSecondaryVariant">@color/secondary</item>
+        <item name="colorSecondary">@color/dimGreen</item>
+        <item name="colorSecondaryVariant">@color/dimGreen</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
@@ -33,7 +33,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
-
     <style name="Theme.FIFAStation.Red" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/lightRed</item>
@@ -43,51 +42,6 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/dimRed</item>
         <item name="colorSecondaryVariant">@color/dimRed</item>
-        <item name="colorOnSecondary">@color/black</item>
-
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-    </style>
-
-    <style name="Theme.FIFAStation.Yellow" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/lightYellow</item>
-        <item name="colorPrimaryVariant">@color/lightYellow</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/dimYellow</item>
-        <item name="colorSecondaryVariant">@color/dimYellow</item>
-        <item name="colorOnSecondary">@color/black</item>
-
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-    </style>
-
-    <style name="Theme.FIFAStation.Purple" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/lightPurple</item>
-        <item name="colorPrimaryVariant">@color/lightPurple</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/purple</item>
-        <item name="colorSecondaryVariant">@color/purple</item>
-        <item name="colorOnSecondary">@color/black</item>
-
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-    </style>
-
-    <style name="Theme.FIFAStation.Black" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gray</item>
-        <item name="colorPrimaryVariant">@color/gray</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/darkGray</item>
-        <item name="colorSecondaryVariant">@color/darkGray</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->

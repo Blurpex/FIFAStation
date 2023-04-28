@@ -79,39 +79,4 @@ public class HomeFragment extends Fragment {
             popularClubsView.setLayoutManager(layoutManager);
         });
     }
-
-    /*
-    private void displayCopyrightDialog() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        boolean isFirstRun = sharedPreferences.getBoolean("IS_FIRST_RUN", true);
-
-        if(isFirstRun) {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
-            alertDialog.setIcon(R.drawable.ic_alert);
-            alertDialog.setPositiveButton("Acknowledge",
-                    (dialog, which) -> Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show());
-            alertDialog.show();
-
-            // Update
-            editor.putBoolean("IS_FIRST_RUN", false);
-            editor.commit();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // Update
-        editor.putBoolean("IS_FIRST_RUN", true);
-        editor.commit();
-    }
-    */
 }

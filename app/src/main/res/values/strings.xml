@@ -41,7 +41,7 @@
 
     <!-- fragment_settings.xml -->
     <string name="theme_label">Theme</string>
-    <string name="default_color">Default</string>
+    <string name="green">Green</string>
     <string name="blue">Blue</string>
     <string name="red">Red</string>
     <string name="yellow">Yellow</string>
@@ -57,6 +57,6 @@
     </array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Work in progress!</string>
 
 </resources>
