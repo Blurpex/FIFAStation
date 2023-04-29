@@ -43,7 +43,6 @@ public class SettingsFragment extends Fragment {
             }
 
             // handle dark mode status
-            boolean darkModeStatus = darkModeSwitch.isChecked();
             editor.putBoolean("darkMode", darkModeSwitch.isChecked());
 
             // save shared preferences

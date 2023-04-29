@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.FIFAStation" parent="Theme.Material3.DayNight.NoActionBar">
 
@@ -42,6 +42,34 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/dimRed</item>
         <item name="colorSecondaryVariant">@color/dimRed</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.FIFAStation.Purple" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/darkPurple</item>
+        <item name="colorPrimaryVariant">@color/darkPurple</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/dimPurple</item>
+        <item name="colorSecondaryVariant">@color/dimPurple</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+    <style name="Theme.FIFAStation.Yellow" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/darkYellow</item>
+        <item name="colorPrimaryVariant">@color/darkYellow</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/dimYellow</item>
+        <item name="colorSecondaryVariant">@color/dimYellow</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->

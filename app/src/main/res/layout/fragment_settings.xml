@@ -60,12 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/yellow" />
-
-            <RadioButton
-                android:id="@+id/theme_black"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/black" />
         </RadioGroup>
 
         <com.google.android.material.divider.MaterialDivider

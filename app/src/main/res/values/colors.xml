@@ -18,12 +18,10 @@
     <color name="darkBlue">#0099E6</color>
     <color name="lightBlue">#66B3FF</color>
     <color name="dimBlue">#5466B3FF</color>
-    <color name="darkYellow">#E6BF00</color>
+    <color name="darkYellow">#C2A205</color>
     <color name="lightYellow">#FFCC66</color>
     <color name="dimYellow">#54FFCC66</color>
     <color name="darkPurple">#7300E6</color>
     <color name="lightPurple">#B366FF</color>
     <color name="dimPurple">#54B366FF</color>
-    <color name="lightGray">#ABB0B8</color>
-    <color name="dimGray">#63666A</color>
 </resources>
