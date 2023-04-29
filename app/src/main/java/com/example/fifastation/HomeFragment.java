@@ -10,8 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.fifastation.db.Player;
 import com.example.fifastation.db.PlayerDatabase;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -33,6 +41,20 @@ public class HomeFragment extends Fragment {
         // popular clubs
         this.popularClubsView = view.findViewById(R.id.popular_clubs_list);
         displayPopularClubs();
+
+        // discover player
+        PlayerDatabase.getInstance(context);
+        PlayerDatabase.getPlayerById(41, tempPlayer -> {
+            Player player = tempPlayer.get(0);
+
+            ImageView photo = view.findViewById(R.id.player_photo_discover);
+            Picasso.get().load(player.player_face_url).placeholder(R.drawable.player_placeholder).into(photo);
+            ImageView nation = view.findViewById(R.id.player_nation_discover);
+            Picasso.get().load(player.nation_flag_url).placeholder(R.drawable.player_placeholder).into(nation);
+            ImageView clubLogo = view.findViewById(R.id.player_club_discover);
+            Picasso.get().load(player.club_logo_url).placeholder(R.drawable.player_placeholder).into(clubLogo);
+            ((TextView) view.findViewById(R.id.player_name_discover)).setText(player.long_name);
+        });
 
         // inflate the layout
         return view;
@@ -57,39 +79,4 @@ public class HomeFragment extends Fragment {
             popularClubsView.setLayoutManager(layoutManager);
         });
     }
-
-    /*
-    private void displayCopyrightDialog() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        boolean isFirstRun = sharedPreferences.getBoolean("IS_FIRST_RUN", true);
-
-        if(isFirstRun) {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("The data used on this app is from website and not intended to use copyright.");
-            alertDialog.setIcon(R.drawable.ic_alert);
-            alertDialog.setPositiveButton("Acknowledge",
-                    (dialog, which) -> Toast.makeText(MainActivity.this, "Thanks for your acknowledge!!!", Toast.LENGTH_LONG).show());
-            alertDialog.show();
-
-            // Update
-            editor.putBoolean("IS_FIRST_RUN", false);
-            editor.commit();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // Update
-        editor.putBoolean("IS_FIRST_RUN", true);
-        editor.commit();
-    }
-    */
 }

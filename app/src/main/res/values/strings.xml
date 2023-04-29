@@ -39,6 +39,16 @@
         <item>100</item>
     </array>
 
+    <!-- fragment_settings.xml -->
+    <string name="theme_label">Theme</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="red">Red</string>
+    <string name="yellow">Yellow</string>
+    <string name="purple">Purple</string>
+    <string name="black">Black</string>
+    <string name="dark_mode_label">Dark Mode</string>
+
     <!-- demo -->
     <array name="demo_list">
         <item>Option 1</item>
@@ -47,6 +57,6 @@
     </array>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Work in progress!</string>
 
 </resources>
