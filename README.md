@@ -5,11 +5,9 @@ This Android app is designed to provide detailed statistics on FIFA players. The
 
 ### Features
 - Browse and search for FIFA players
-- View detailed statistics on individual players, such as goals, assists, and ratings
-- Compare two players side by side to see how they stack up against each other
+- View detailed statistics on individual players
 - Create a favorites list to easily access your most frequently viewed players
 - Filter players by team, league, or nationality
-- Get notifications when new player statistics are added
 
 ### Technologies Used
 This app was built using the following technologies:
